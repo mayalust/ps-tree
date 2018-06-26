@@ -152,6 +152,9 @@
               event.preventDefault();
               this.toggle();
             };
+            this.traverseParents(function(n){
+              console.log(n);
+            })
             console.log(tree.getSelected(), this.getSelected());
           }
         }

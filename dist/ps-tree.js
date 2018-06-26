@@ -416,6 +416,18 @@
       }
       return false;
     }
+    function eachParent(callback){
+      var parent = this.parent, rs;
+      callback = callback || function(){return false};
+      while(parent){
+        rs = callback(parent, stop)
+        if(parent.parent && rs !== false){
+          parent = parent.parent;
+        } else {
+          break;
+        }
+      }
+    }
     function traverse(data, dept){
       var i, icon, name, url, children, repeat, nodeList = [],
         row = bind(this, createRow)(dept), foldIcon, visiblechildren, emptyplaceholder;
@@ -657,17 +669,8 @@
         }
         traverse(this.children);
       },
-      eachParent : function(callback){
-        var parent = this.parent, rs;
-        while(parent){
-          rs = callback(parent, stop)
-          if(parent.parent && rs !== false){
-            parent = parent.parent;
-          } else {
-            break;
-          }
-        }
-      },
+      traverseParents : eachParent,
+      eachParent : eachParent,
       getChildren : function(){
         var rs = [];
         this.eachChild(bind(this, function(n, i){
