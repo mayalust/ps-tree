@@ -739,7 +739,12 @@
       find && callback != "" && (n.searched = find);
       if(n.show !== true ){
         while(find && parent){
-          find && (parent.show = true);
+          if(find){
+            parent.show = true;
+            parent.open = true;
+          } else {
+            parent.open = false;
+          }
           parent = parent.parent;
         }
       };
