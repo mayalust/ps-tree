@@ -242,7 +242,6 @@
     function updateFolder(allowAnimate){
       var children = this.getChildren(),
         maxlength = children.length ? children.length * 40 : 0;
-      this.open == true && (console.log(this.depth, this.label, maxlength));
       function remove(){
         var parent = this.fold.parentNode;
         addCss(this.fold, {
