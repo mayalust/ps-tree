@@ -1,10 +1,14 @@
 (function(global, factory){
-  if(typeof module !== "undefined" && typeof module.exports === "function"){
-    module.exports = factory();
-  } else if(typeof define === "function"){
-    define(factory);
-  } else if(global === window){
-    global.psTree = factory();
+  if(global === window){
+    if(typeof module !== "undefined" && typeof module.exports === "function"){
+      module.exports = factory(); /** for CMD */
+    } else if(typeof define === "function"){
+      define(factory); /** for AMD */
+    } else {
+      global.psTree = factory();
+    }
+  } else {
+    throw new Error("cannot boot except for on browser.");
   }
 })(this, function(){
   var push = Array.prototype.push,
@@ -667,6 +671,19 @@
           })
         }
         traverse(this.children);
+      },
+      getBrothers : function(){
+        return this.parent ? this.parent.children : self.nodeList;
+      },
+      find : function(callback){
+        var stacks = [this]
+        while(node = stacks.pop()){
+          if(callback(node)){
+            return node;
+          }
+          push.apply(stacks, node.children || []);
+        }
+        return null;
       },
       traverseParents : eachParent,
       eachParent : eachParent,

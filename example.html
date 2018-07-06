@@ -148,6 +148,7 @@
              this.render(group);*/
           },
           click : function(event){
+            /**
             if(this.children){
               event.preventDefault();
               this.toggle();
@@ -155,10 +156,11 @@
             this.traverseParents(function(n){
               console.log(n);
             })
-            console.log(tree.getSelected(), this.getSelected());
+            console.log(tree.getSelected(), this.getSelected());*/
           }
         }
       });
+      console.log(tree);
       hasline.setAttribute("checked", "checked");
       pullright.setAttribute("checked", "checked");
       hasCheckbox.setAttribute("checked", "checked");
