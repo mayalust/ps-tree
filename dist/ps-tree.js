@@ -447,6 +447,7 @@
             this.allowDefaultBehavior = false;
           }
         });
+        newNode.depth = dept;
         extend(newNode, dt);
         if(isArray(dt)){
           if(isArray(dt[2])){
@@ -477,7 +478,6 @@
         push.call(this, newNode);
         emptyplaceholder = createElement("span", "placeholder");
         inner = bind(self, traverse)(children, dept + 1, newNode);
-        newNode.depth = dept;
         newNode.children  = inner.nodeList.length && inner.nodeList;
         newNode.root = self;
         newNode.placeholder = placeholder;
