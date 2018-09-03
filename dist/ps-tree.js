@@ -1,14 +1,10 @@
 (function(global, factory){
-  if(global === window){
-    if(typeof module !== "undefined" && typeof module.exports === "function"){
-      module.exports = factory(); /** for CMD */
-    } else if(typeof define === "function"){
-      define(factory); /** for AMD */
-    } else {
-      global.psTree = factory();
-    }
+  if(typeof module !== "undefined" && typeof module.exports === "function"){
+    module.exports = factory(); /** for CMD */
+  } else if(typeof define === "function"){
+    define(factory); /** for AMD */
   } else {
-    throw new Error("cannot boot except for on browser.");
+    global.psTree = factory();
   }
 })(this, function(){
   var push = Array.prototype.push,
@@ -478,7 +474,7 @@
         push.call(this, newNode);
         emptyplaceholder = createElement("span", "placeholder");
         inner = bind(self, traverse)(children, dept + 1, newNode);
-        newNode.children  = inner.nodeList.length && inner.nodeList;
+        newNode.children = inner.nodeList.length && inner.nodeList;
         newNode.root = self;
         newNode.placeholder = placeholder;
         newNode.foldplaceholder = foldplaceholder;
