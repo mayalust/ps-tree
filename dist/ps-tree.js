@@ -549,9 +549,7 @@
       },
       highlight : function(){
         currentHighlight && removeClass(currentHighlight, "high-light");
-        currentHighlight !== this.inner ?
-          addClass(this.inner, "high-light") :
-          removeClass(this.inner, "high-light");
+        addClass(this.inner, "high-light")
         currentHighlight = this.inner;
       },
       setTitle : function(text){
